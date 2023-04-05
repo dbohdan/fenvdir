@@ -12,6 +12,10 @@ function fenvdir --argument-names dir
     # Should we ignore hidden files?
     for f in $dir/*
         set --local name (path basename $f)
+        if test -d $f
+            printf 'found a subdirectory: "%s"\n' $f
+            return 111
+        end
         if not test -r $f
             printf 'file not readable: "%s"\n' $f
             return 111
