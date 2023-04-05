@@ -25,7 +25,7 @@ function fenvdir --argument-names dir
             set --erase --global $name
 
             set --query _flag_verbose
-            and printf 'erased "%s"\n' $name
+            and echo set -e $name
 
             continue
         end
@@ -45,7 +45,7 @@ function fenvdir --argument-names dir
         end
 
         if set --query _flag_verbose
-            set -s $name
+            echo set -gx $name (string escape $value)
         end
     end
 end
