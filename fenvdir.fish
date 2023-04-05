@@ -9,7 +9,7 @@ function fenvdir --argument-names dir
         return 111
     end
 
-    # Should we ignore hidden files?
+    # We ignore hidden files.
     for f in $dir/*
         set --local name (path basename $f)
 
@@ -28,6 +28,7 @@ function fenvdir --argument-names dir
             return 111
         end
 
+        # If the file is empty, erase the variable.
         if not test -s $f
             set --erase --global $name
 
@@ -37,13 +38,15 @@ function fenvdir --argument-names dir
             continue
         end
 
-        set --local value "$(read < "$f" | string trim --chars "\t " --right | string split0)"
-
+        set --local value "$(read < "$f" \
+            | string trim --chars "\t " --right \
+            | string split0)"
 
         # Reset $status.
         true
         if not set --export --global $name $value
-            printf 'can\'t set variable "%s" to "%s"\n' $name $value >/dev/stderr
+            # This should not happen with the checks above.
+            printf 'can\'t set variable "%s" to value from file "%s"\n' $name $f >/dev/stderr
             return 111
         end
 
