@@ -5,7 +5,7 @@ function fenvdir --argument-names dir
     or return
 
     if not test -r $dir
-        printf 'directory not readable: "%s"\n' $dir
+        printf 'directory not readable: "%s"\n' $dir >/dev/stderr
         return 111
     end
 
@@ -13,11 +13,11 @@ function fenvdir --argument-names dir
     for f in $dir/*
         set --local name (path basename $f)
         if test -d $f
-            printf 'found a subdirectory: "%s"\n' $f
+            printf 'found a subdirectory: "%s"\n' $f >/dev/stderr
             return 111
         end
         if not test -r $f
-            printf 'file not readable: "%s"\n' $f
+            printf 'file not readable: "%s"\n' $f >/dev/stderr
             return 111
         end
 
@@ -35,12 +35,12 @@ function fenvdir --argument-names dir
         # Reset $status.
         true
         if not set --global $name '' 2>/dev/null
-            printf 'invalid variable name: "%s"\n' $name
+            printf 'invalid variable name: "%s"\n' $name >/dev/stderr
             return 111
         end
 
         if not set --export --global $name $value
-            printf 'can\'t set variable "%s" to "%s"\n' $name $value
+            printf 'can\'t set variable "%s" to "%s"\n' $name $value >/dev/stderr
             return 111
         end
 
