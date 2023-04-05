@@ -12,12 +12,19 @@ function fenvdir --argument-names dir
     # Should we ignore hidden files?
     for f in $dir/*
         set --local name (path basename $f)
+
         if test -d $f
             printf 'found a subdirectory: "%s"\n' $f >/dev/stderr
             return 111
         end
+
         if not test -r $f
             printf 'file not readable: "%s"\n' $f >/dev/stderr
+            return 111
+        end
+
+        if not set --global $name '' 2>/dev/null
+            printf 'invalid variable name: "%s"\n' $name >/dev/stderr
             return 111
         end
 
@@ -32,13 +39,9 @@ function fenvdir --argument-names dir
 
         set --local value "$(read < "$f" | string trim --chars "\t " --right | string split0)"
 
+
         # Reset $status.
         true
-        if not set --global $name '' 2>/dev/null
-            printf 'invalid variable name: "%s"\n' $name >/dev/stderr
-            return 111
-        end
-
         if not set --export --global $name $value
             printf 'can\'t set variable "%s" to "%s"\n' $name $value >/dev/stderr
             return 111
