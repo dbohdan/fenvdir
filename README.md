@@ -58,3 +58,7 @@ Run `install.fish`.
 ## License
 
 MIT.
+
+## See also
+
+- [ev-fish](https://github.com/joehillen/ev-fish)&thinsp;—&thinsp;“Load environment variables from files and directories using fish shell, like envdir”
