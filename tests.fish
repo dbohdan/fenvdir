@@ -2,7 +2,7 @@
 # Copyright (c) 2023 D. Bohdan. License: MIT.
 
 cd "$(path dirname "$(status filename)")"
-source fenvdir.fish
+source functions/fenvdir.fish
 
 begin
     fenvdir d

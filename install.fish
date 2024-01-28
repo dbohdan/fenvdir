@@ -2,7 +2,7 @@
 
 cd "$(path dirname "$(status filename)")"
 
-set --local src fenvdir.fish
+set --local src functions/fenvdir.fish
 set --local dst $__fish_config_dir/functions/fenvdir.fish
 
 if not cp $src $dst
