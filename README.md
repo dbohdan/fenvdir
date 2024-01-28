@@ -53,7 +53,21 @@ Earlier versions will not work.
 
 ## Installation
 
-Run `install.fish`.
+### Using Fisher
+
+To install fenvdir using
+[Fisher](https://github.com/jorgebucaran/fisher),
+run the command:
+
+```fish
+fisher install dbohdan/fenvdir
+```
+
+### Manual
+
+1. Clone the repository
+   or download and extract a source archive.
+2. Run `install.fish`.
 
 ## License
 
