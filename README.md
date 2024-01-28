@@ -10,21 +10,19 @@ for the
 fenvdir sets environment variables
 to the contents of the non-hidden files in a directory.
 
-## Comparison with envdir
+## Contents
 
-fenvdir is not identical to envdir.
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Installation](#installation)
+- [Comparison with envdir](#comparison-with-envdir)
+- [Alternatives](#alternatives)
+- [License](#license)
 
-- Like envdir:
-  - fenvdir trims trailing spaces and tabs.
-  - fenvdir converts null bytes to line feeds.
-- Unlike envdir:
-  - fenvdir reads whole files
-into environment variables
-    instead of just their first lines.
-  - fenvdir requires filenames
-    to be valid fish shell identifiers.
-    This means that `foo-bar`
-    is an acceptable filename for envdir but not fenvdir.
+## Requirements
+
+fenvdir requires fish 3.4 or later.
+Earlier versions will not work.
 
 ## Usage
 
@@ -46,16 +44,11 @@ set -gx no_newline 'hello fish world'
 set -gx null_sep hello\nfish\nworld
 ```
 
-## Requirements
-
-fish 3.4 or later.
-Earlier versions will not work.
-
 ## Installation
 
 ### Using Fisher
 
-To install fenvdir using
+To install fenvdir with
 [Fisher](https://github.com/jorgebucaran/fisher),
 run the command:
 
@@ -69,10 +62,26 @@ fisher install dbohdan/fenvdir
    or download and extract a source archive.
 2. Run `install.fish`.
 
+## Comparison with envdir
+
+fenvdir is not identical to envdir.
+
+- Like envdir:
+  - fenvdir trims trailing spaces and tabs.
+  - fenvdir converts null bytes to line feeds.
+- Unlike envdir:
+  - fenvdir reads whole files
+into environment variables
+    instead of just their first lines.
+  - fenvdir requires filenames
+    to be valid fish shell identifiers.
+    This means that `foo-bar`
+    is an acceptable filename for envdir but not fenvdir.
+
+## Alternatives
+
+- [ev-fish](https://github.com/joehillen/ev-fish)&thinsp;—&thinsp;“Load environment variables from files and directories using fish shell, like envdir”
+
 ## License
 
 MIT.
-
-## See also
-
-- [ev-fish](https://github.com/joehillen/ev-fish)&thinsp;—&thinsp;“Load environment variables from files and directories using fish shell, like envdir”
